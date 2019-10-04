@@ -2,12 +2,38 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 @Data
 public class Goods {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer gid;
     String gname;
     Float oaprice;
     String info;
+    Integer cid;
+    Integer caid;
+
+    public Integer getCid() {
+        return cid;
+    }
+
+    public void setCid(Integer cid) {
+        this.cid = cid;
+    }
+
+    public Integer getCaid() {
+        return caid;
+    }
+
+    public void setCaid(Integer caid) {
+        this.caid = caid;
+    }
 
     public Integer getGid() {
         return gid;
@@ -48,6 +74,8 @@ public class Goods {
                 ", gname='" + gname + '\'' +
                 ", oaprice=" + oaprice +
                 ", info='" + info + '\'' +
+                ", cid=" + cid +
+                ", caid=" + caid +
                 '}';
     }
 }

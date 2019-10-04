@@ -2,14 +2,28 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 @Data
 public class Shoper {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer sid;
     String sname;
     String spassword;
     String saddress;
     String semail;
     String stel;
+    Integer aid;
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
 
     public Integer getSid() {
         return sid;
@@ -68,6 +82,7 @@ public class Shoper {
                 ", saddress='" + saddress + '\'' +
                 ", semail='" + semail + '\'' +
                 ", stel='" + stel + '\'' +
+                ", aid=" + aid +
                 '}';
     }
 }
