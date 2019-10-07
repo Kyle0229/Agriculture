@@ -2,8 +2,14 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.*;
+
+@Entity
+@Table
 @Data
 public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer uid;
     String name;
     String password;
@@ -12,6 +18,24 @@ public class User {
     String uaddress;
     String tel;
     String email;
+    Integer aid;
+    Integer caid;
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
+    public Integer getCaid() {
+        return caid;
+    }
+
+    public void setCaid(Integer caid) {
+        this.caid = caid;
+    }
 
     public Integer getUid() {
         return uid;
@@ -88,6 +112,8 @@ public class User {
                 ", uaddress='" + uaddress + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
+                ", aid=" + aid +
+                ", caid=" + caid +
                 '}';
     }
 }
