@@ -9,4 +9,5 @@ public interface GoodsService {
     void save(Goods goods);
     void delete(Integer gid);
     Goods selectOne(Integer gid);
+    List<Goods> selectAllByCid(Integer cid);
 }

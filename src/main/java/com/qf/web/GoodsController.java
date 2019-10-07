@@ -5,6 +5,7 @@ import com.qf.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
@@ -16,6 +17,11 @@ public class GoodsController {
     @RequestMapping("/selectAll")
     public List<Goods> selectAll(){
         return goodsService.selectAll();
+    }
+    @RequestMapping("/selectAllByCid")
+    public List<Goods> selectAllByCid(@RequestParam("id")Integer cid){
+
+        return goodsService.selectAllByCid(cid);
     }
     @RequestMapping("/save")
     public void save(@RequestBody Goods goods){
