@@ -7,12 +7,24 @@ import javax.persistence.*;
 @Data
 @Entity
 public class Goods {
+    @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
+
     Integer gid;
     String gname;
     Float oaprice;
+    String pic;
     String info;
     Integer cid;
     Integer caid;
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
 
     public Integer getCid() {
         return cid;
