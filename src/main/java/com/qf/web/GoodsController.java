@@ -5,7 +5,9 @@ import com.qf.service.GoodsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
@@ -18,8 +20,8 @@ public class GoodsController {
         return goodsService.selectAll();
     }
     @RequestMapping("/save")
-    public void save(@RequestBody Goods goods){
-         goodsService.save(goods);
+    public void save(@RequestParam("file")MultipartFile file, @RequestBody Goods goods){
+        goodsService.save(file,goods);
     }
     @RequestMapping("/delete")
     public String delete(@RequestBody Goods goods) {
@@ -33,8 +35,8 @@ public class GoodsController {
         return goodsService.selectOne(gid);
     }
     @RequestMapping("/update")
-    public String update(@RequestBody Goods goods){
-        goodsService.save(goods);
+    public String update(@RequestParam("file")MultipartFile file,@RequestBody Goods goods){
+        goodsService.save(file,goods);
         return "修改成功";
     }
 }
