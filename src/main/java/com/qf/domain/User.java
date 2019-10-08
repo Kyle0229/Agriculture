@@ -2,8 +2,13 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
 @Data
+@Entity
 public class User {
+    @Id
     Integer uid;
     String name;
     String password;
@@ -12,6 +17,7 @@ public class User {
     String uaddress;
     String tel;
     String email;
+    String code;
 
     public Integer getUid() {
         return uid;
@@ -77,6 +83,14 @@ public class User {
         this.email = email;
     }
 
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
     @Override
     public String toString() {
         return "User{" +
@@ -88,6 +102,7 @@ public class User {
                 ", uaddress='" + uaddress + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
+                ", code='" + code + '\'' +
                 '}';
     }
 }
