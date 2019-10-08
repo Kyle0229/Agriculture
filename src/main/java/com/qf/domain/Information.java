@@ -12,7 +12,7 @@ public class Information {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer iid;
     Integer cid;
-    Integer iname;
+    String iname;
     String inews;
 
 
@@ -32,11 +32,11 @@ public class Information {
         this.iid = iid;
     }
 
-    public Integer getIname() {
+    public String getIname() {
         return iname;
     }
 
-    public void setIname(Integer iname) {
+    public void setIname(String iname) {
         this.iname = iname;
     }
 
