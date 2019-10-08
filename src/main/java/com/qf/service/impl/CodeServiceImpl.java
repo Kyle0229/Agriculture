@@ -1,10 +1,9 @@
 package com.qf.service.impl;
 
-import com.qf.dao.CodeRepository;
+import com.qf.mapper.CodeRepository;
 import com.qf.domain.Code;
 import com.qf.domain.User;
 import com.qf.service.CodeService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -32,7 +31,7 @@ public class CodeServiceImpl implements CodeService {
         } else {
             if (co.getCode().equals(code)) {
                 co.setStatus(0);
-                codeRepository.save(co);
+                codeRepository.update(co);
                 return 1;
             } else {
 

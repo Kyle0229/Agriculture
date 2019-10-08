@@ -1,7 +1,6 @@
 package com.qf.shiro;
 
-import com.qf.dao.SysPermissionRepository;
-import com.qf.dao.UserMapper;
+import com.qf.mapper.SysPermissionRepository;
 import com.qf.dao.UserRespository;
 import com.qf.domain.SysPermission;
 import com.qf.domain.User;
@@ -14,7 +13,6 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.Collection;
@@ -40,19 +38,20 @@ public class MyShiroRealm extends AuthorizingRealm {
      */
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principal) {
-        String loginName = (String) principal.getPrimaryPrincipal();
-        //查找权限
-        List<SysPermission> sysPermissions = sysPermissionRepository.selectPermissionByLoginName(loginName);
-        Collection permissions = new HashSet<>(); //去重
+//        String loginName = (String) principal.getPrimaryPrincipal();
+//        //查找权限
+//        List<SysPermission> sysPermissions = sysPermissionRepository.selectPermissionByLoginName(loginName);
+//        Collection permissions = new HashSet<>(); //去重
+//
+//        for (SysPermission s : sysPermissions) {
+//            permissions.add(s.getPerName());  //获得权限名
+//        }
+//        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
+//
+//        simpleAuthorizationInfo.addStringPermissions(permissions);
 
-        for (SysPermission s : sysPermissions) {
-            permissions.add(s.getPerName());  //获得权限名
-        }
-        SimpleAuthorizationInfo simpleAuthorizationInfo = new SimpleAuthorizationInfo();
-
-        simpleAuthorizationInfo.addStringPermissions(permissions);
-
-        return simpleAuthorizationInfo;
+//        return simpleAuthorizationInfo;
+        return null;
     }
 
     /*
@@ -62,7 +61,7 @@ public class MyShiroRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
         String username = (String) token.getPrincipal();
         User user = userRespository.findByName(username);
-        String salt = user.getName();  //把用户名作为加密密码的盐
+        String salt = "likun";  //把用户名作为加密密码的盐
         SimpleAuthenticationInfo simpleAuthenticationInfo = new SimpleAuthenticationInfo(username, user.getPassword(), ByteSource.Util.bytes(salt), getName());
         return simpleAuthenticationInfo;
     }

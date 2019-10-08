@@ -76,7 +76,7 @@ public class Md5Utils {
      * @return
      */
     public static String encryptPassword(String password, String salt) {
-        return Md5Utils.hash(password + salt);
+        return Md5Utils.hash( salt+password );
     }
 
 }

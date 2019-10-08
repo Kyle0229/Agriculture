@@ -4,6 +4,7 @@ import com.qf.dao.UserRespository;
 import com.qf.domain.User;
 import com.qf.service.UserService;
 import com.qf.utils.Md5Password;
+import com.qf.utils.Md5Utils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,10 +21,8 @@ public class UserServiceImpl implements UserService {
     @Override
     public User save(User user) {
         String password=user.getPassword();
-        String name=user.getName();
-        Md5Password md5Password=new Md5Password();
-        String password1=md5Password.password(password,name);
-        user.setPassword(password);
+        String password1 =Md5Utils.encryptPassword(password,"likun");
+        user.setPassword(password1);
         User save=userRespository.save(user);
         return save;
     }

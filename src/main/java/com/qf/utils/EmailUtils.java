@@ -1,15 +1,14 @@
 package com.qf.utils;
 
-import com.qf.dao.CodeRepository;
+import com.qf.mapper.CodeRepository;
 import com.qf.domain.Code;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Component;
-import com.qf.dao.CodeRepository;
-import com.qf.domain.Code;
 
+import javax.annotation.Resource;
 import java.util.Date;
 import java.util.Random;
 
@@ -25,7 +24,7 @@ public class EmailUtils {
     @Autowired
     private JavaMailSender javamailSender;
 
-    @Autowired
+    @Resource
     private CodeRepository codeRepository;
 
     //sendTo：用户注册时输入的邮箱
@@ -37,16 +36,14 @@ public class EmailUtils {
         simpleMailMessage.setFrom(from);
         simpleMailMessage.setTo(sendTo);
         try{
-            javamailSender.send(simpleMailMessage);
             if (codeRepository.findByUserEmail(sendTo)!=null){
                 Code co =codeRepository.findByUserEmail(sendTo);
-                co.setCode(code);
-                co.setCreateTime(new Date());
-                codeRepository.save(co);
+                code = co.getCode();
             }else {
+                javamailSender.send(simpleMailMessage);
                 Code co = new Code();
-                co.setCreateTime(new Date());
                 co.setCode(code);
+                co.setCreateTime(new Date());
                 co.setUserEmail(sendTo);
                 //设置当前验证码得状态
                 co.setStatus(1);

@@ -1,4 +1,4 @@
-package com.qf.dao;
+package com.qf.mapper;
 
 import com.qf.domain.SysPermission;
 import org.apache.ibatis.annotations.Mapper;

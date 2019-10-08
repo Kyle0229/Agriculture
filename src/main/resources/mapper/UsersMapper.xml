@@ -28,7 +28,7 @@
         US.name = #{username}
     </select>
 
-    <insert id="insert" parameterType="com.qf.domain.SysUser">
+    <insert id="insert" parameterType="com.qf.domain.User">
 
         INSERT into users ( name,password,age,sex,uadress,tel,email)VALUES (#{name},#{password},#{age},#{sex},#{uaddress},#{tel},#{email})
     </insert>
