@@ -7,6 +7,12 @@ import com.qf.utils.Md5Password;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import java.util.List;
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService {
     @Autowired
@@ -25,5 +31,24 @@ public class UserServiceImpl implements UserService {
     @Override
     public User findByName(String name) {
         return userRespository.findByName(name);
+    public List<User> selectAllU() {
+        return userRespository.findAll();
+    }
+
+    @Override
+    public void save(User user) {
+        userRespository.save(user);
+    }
+
+    @Override
+    public void delete(Integer uid) {
+        userRespository.deleteById(uid);
+    }
+
+    @Override
+    public User selectOne(Integer uid) {
+        Optional<User> byId = userRespository.findById(uid);
+        User user=byId.get();
+        return user;
     }
 }

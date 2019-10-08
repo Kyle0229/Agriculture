@@ -2,13 +2,14 @@ package com.qf.domain;
 
 import lombok.Data;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
 
-@Data
 @Entity
+@Table(name = "users")
+@Data
 public class User {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer uid;
     String name;
     String password;
@@ -17,7 +18,24 @@ public class User {
     String uaddress;
     String tel;
     String email;
-    String code;
+    Integer aid;
+    Integer caid;
+
+    public Integer getAid() {
+        return aid;
+    }
+
+    public void setAid(Integer aid) {
+        this.aid = aid;
+    }
+
+    public Integer getCaid() {
+        return caid;
+    }
+
+    public void setCaid(Integer caid) {
+        this.caid = caid;
+    }
 
     public Integer getUid() {
         return uid;
@@ -83,14 +101,6 @@ public class User {
         this.email = email;
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     @Override
     public String toString() {
         return "User{" +
@@ -102,7 +112,6 @@ public class User {
                 ", uaddress='" + uaddress + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
-                ", code='" + code + '\'' +
                 '}';
     }
 }
