@@ -9,4 +9,5 @@ public interface GoodsService {
     void save(MultipartFile file, Goods goods);
     void delete(Integer gid);
     Goods selectOne(Integer gid);
+    List<Goods> selectAllByCid(Integer cid);
 }

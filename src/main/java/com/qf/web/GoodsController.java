@@ -19,6 +19,11 @@ public class GoodsController {
     public List<Goods> selectAll(){
         return goodsService.selectAll();
     }
+    @RequestMapping("/selectAllByCid")
+    public List<Goods> selectAllByCid(@RequestParam("id")Integer cid){
+
+        return goodsService.selectAllByCid(cid);
+    }
     @RequestMapping("/save")
     public void save(@RequestParam("file")MultipartFile file, @RequestBody Goods goods){
         goodsService.save(file,goods);
