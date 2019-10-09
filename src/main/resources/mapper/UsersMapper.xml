@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qf.dao.UserMapper">
+    <resultMap type="com.qf.domain.User" id="userMap">
+        <id column="uid" property="uid" />
+        <result column="name" property="name" />
+        <result column="password" property="password" />
+        <result column="age" property="age" />
+        <result column="sex" property="sex" />
+        <result column="uaddress" property="uaddress" />
+        <result column="tel" property="tel" />
+        <result column="email" property="email" />
+
+    </resultMap>
+
+    <sql id="tbusers_columns">
+      name,password,age,sex,uadress,tel,email
+    </sql>
+    <!--根据用户名查询对象  -->
+    <select id="findByUserName"  resultMap="userMap">
+        SELECT
+        <include refid="tbusers_columns"></include>
+        FROM
+        users US
+        WHERE
+        US.name = #{username}
+    </select>
+
+    <insert id="insert" parameterType="com.qf.domain.User">
+
+        INSERT into users ( name,password,age,sex,uadress,tel,email)VALUES (#{name},#{password},#{age},#{sex},#{uaddress},#{tel},#{email})
+    </insert>
+</mapper>

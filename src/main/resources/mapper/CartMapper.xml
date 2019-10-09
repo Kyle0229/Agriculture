@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.qf.mapper.CartMapper">
+    <select id="selectOneByNameAndUid" resultType="com.qf.domain.Cart" parameterType="java.util.Map">
+        select * from cart where caname = #{name} and uid = #{uid}
+    </select>
+    <select id="selectAllByUid" resultType="com.qf.domain.Cart" parameterType="java.lang.Integer">
+        select * from cart where uid = #{uid}
+    </select>
+
+</mapper>

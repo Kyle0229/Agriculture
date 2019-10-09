@@ -4,6 +4,11 @@ import com.qf.dao.UserRespository;
 import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
+import com.qf.utils.Md5Password;
+import com.qf.utils.Md5Utils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,12 +30,22 @@ public class UserServiceImpl implements UserService {
         res.setList(all.getContent());
         res.setTotal(all.getTotalElements());
         return res;
+    public User save(User user) {
+        String password=user.getPassword();
+        String password1 =Md5Utils.encryptPassword(password,"likun");
+        user.setPassword(password1);
+        User save=userRespository.save(user);
+        return save;
     }
 
     @Override
-    public void save(User user) {
-        userRespository.save(user);
+    public User findByName(String name) {
+        return userRespository.findByName(name);
     }
+    public List<User> selectAllU() {
+        return userRespository.findAll();
+    }
+
 
     @Override
     public void delete(Integer uid) {

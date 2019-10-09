@@ -4,5 +4,7 @@
 <select id="selectAllByCid" resultType="com.qf.domain.Goods" parameterType="java.lang.Integer">
     select * from goods where cid = #{cid}
 </select>
-
+        <select id="selectOneByGid" resultType="com.qf.domain.Goods" parameterType="java.lang.Integer">
+    select * from goods where gid = #{gid}
+</select>
 </mapper>

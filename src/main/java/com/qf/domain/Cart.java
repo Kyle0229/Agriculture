@@ -13,6 +13,7 @@ public class Cart {
     @Id
             @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer caid;
+    Integer uid;
     String caname;
     Float oaprice;
     Integer cacount;
@@ -56,6 +57,14 @@ public class Cart {
 
     public void setCatotalprice(Float catotalprice) {
         this.catotalprice = catotalprice;
+    }
+
+    public Integer getUid() {
+        return uid;
+    }
+
+    public void setUid(Integer uid) {
+        this.uid = uid;
     }
 
     @Override

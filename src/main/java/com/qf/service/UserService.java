@@ -11,4 +11,5 @@ public interface UserService {
     void save(User user);
     void delete(Integer uid);
     User selectOne(Integer uid);
+    User findByName(String name);
 }

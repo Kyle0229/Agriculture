@@ -112,8 +112,6 @@ public class User {
                 ", uaddress='" + uaddress + '\'' +
                 ", tel='" + tel + '\'' +
                 ", email='" + email + '\'' +
-                ", aid=" + aid +
-                ", caid=" + caid +
                 '}';
     }
 }

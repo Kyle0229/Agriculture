@@ -1,6 +1,6 @@
-package com.qf.Config;
+package com.qf.config;
 
-import com.qf.shiro.MyRealm;
+import com.qf.shiro.MyShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
@@ -10,17 +10,22 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+
 @Configuration
 public class ShiroConfig {
+
+    /*
+     * 设置securityManager运行环境
+     */
     @Bean
     public ShiroFilterFactoryBean shiroFilterFactroyBean(@Qualifier("defaultWebSecurityManager")DefaultWebSecurityManager defaultWebSecurityManager){
 
         ShiroFilterFactoryBean shiroFilterFactoryBean = new ShiroFilterFactoryBean();
 
-        //设置登录页面
-        shiroFilterFactoryBean.setLoginUrl("/login");
+       /* //设置登录页面
+        shiroFilterFactoryBean.setLoginUrl("/login");*/
         //无权限得情况下跳转得方法
-        shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
+        // shiroFilterFactoryBean.setUnauthorizedUrl("/unauth");
 
 /*        Map filtes = new HashMap<>();
 
@@ -29,17 +34,21 @@ public class ShiroConfig {
         filtes.put("/delete","perms[user_editsss]");
         filtes.put("/update","perms[user_forbiddens]");
         shiroFilterFactoryBean.setFilterChainDefinitionMap(filtes);*/
+
+        //设置securityManager运行环境
         shiroFilterFactoryBean.setSecurityManager(defaultWebSecurityManager);
         return shiroFilterFactoryBean;
     }
 
 
-
+    /*
+     * 创建securityManager实例
+     */
     @Bean("defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myRealm")MyRealm myRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm")MyShiroRealm myShiroRealm){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
 
-        defaultWebSecurityManager.setRealm(myRealm);
+        defaultWebSecurityManager.setRealm(myShiroRealm);
 
         return defaultWebSecurityManager;
     }
@@ -57,16 +66,18 @@ public class ShiroConfig {
         //指定加密方式为MD5
         credentialsMatcher.setHashAlgorithmName("MD5");
         //加密次数
-       // credentialsMatcher.setHashIterations(1024);
+        //credentialsMatcher.setHashIterations(1024);
         credentialsMatcher.setStoredCredentialsHexEncoded(true);
         return credentialsMatcher;
     }
-    @Bean("myRealm")
-    public MyRealm myRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
-        MyRealm myRealm = new MyRealm();
-        myRealm.setAuthorizationCachingEnabled(false);
-        myRealm.setCredentialsMatcher(hashedCredentialsMatcher);
-        return myRealm;
+
+
+    @Bean("myShiroRealm")
+    public MyShiroRealm loginRealm(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
+        MyShiroRealm myShiroRealm = new MyShiroRealm();
+        myShiroRealm.setAuthorizationCachingEnabled(false);
+        myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        return myShiroRealm;
     }
 
     /**
@@ -89,4 +100,5 @@ public class ShiroConfig {
         authorizationAttributeSourceAdvisor.setSecurityManager(defaultWebSecurityManager);
         return authorizationAttributeSourceAdvisor;
     }
+
 }
