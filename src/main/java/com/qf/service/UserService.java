@@ -1,19 +1,15 @@
 package com.qf.service;
 
-import com.qf.domain.User;
-
-import java.util.List;
-
-
 import com.qf.domain.Goods;
 import com.qf.domain.User;
+import com.qf.response.ResponseUser;
 
 import java.util.List;
 
 public interface UserService {
-   List<User> selectAllU();
+    ResponseUser selectAllU(Integer page, Integer size);
+    User save(User user);
     void delete(Integer uid);
     User selectOne(Integer uid);
-    User save(User user);
     User findByName(String name);
 }

@@ -52,9 +52,9 @@ public class Information {
     public String toString() {
         return "Information{" +
                 "iid=" + iid +
-                ", iname=" + iname +
-                ", inews='" + inews + '\'' +
                 ", cid=" + cid +
+                ", iname='" + iname + '\'' +
+                ", inews='" + inews + '\'' +
                 '}';
     }
 }

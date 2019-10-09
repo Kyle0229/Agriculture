@@ -89,7 +89,10 @@ public class Goods {
                 "gid=" + gid +
                 ", gname='" + gname + '\'' +
                 ", oaprice=" + oaprice +
+                ", pic='" + pic + '\'' +
                 ", info='" + info + '\'' +
+                ", cid=" + cid +
+                ", caid=" + caid +
                 '}';
     }
 }

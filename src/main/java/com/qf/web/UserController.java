@@ -1,11 +1,10 @@
 package com.qf.web;
 
 import com.qf.domain.User;
+import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,23 +12,21 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
-    @RequestMapping("/selectAllU")
-    public List<User> selectAll(){
-        return userService.selectAllU();
+    @RequestMapping("/selectAllU/{page}/{size}")
+    public ResponseUser selectAll(@PathVariable Integer page,@PathVariable Integer size){
+        return userService.selectAllU(page,size);
     }
     @RequestMapping("/saveU")
     public void save(@RequestBody User user){
         userService.save(user);
     }
-    @RequestMapping("/deleteU")
-    public String delete(@RequestBody User user) {
-        Integer gid = user.getUid();
-        userService.delete(gid);
+    @RequestMapping("/deleteU/{uid}")
+    public String delete(@PathVariable Integer uid) {
+        userService.delete(uid);
         return "删除成功";
     }
     @RequestMapping("/selectOneU")
-    public User selectOne (@RequestBody User user){
-        Integer uid=user.getUid();
+    public User selectOne (@RequestParam("uid") Integer uid){
         return userService.selectOne(uid);
     }
     @RequestMapping("/updateU")
