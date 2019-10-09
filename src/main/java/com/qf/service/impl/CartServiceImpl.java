@@ -51,4 +51,10 @@ public class CartServiceImpl implements CartService {
     public List<Cart> selectAllByUid(Integer uid) {
         return cartMapper.selectAllByUid(uid);
     }
+
+    @Override
+    public Integer selectCount(HttpSession session) {
+        User user = (User) session.getAttribute("user");
+        return cartMapper.selectCount(user.getUid());
+    }
 }

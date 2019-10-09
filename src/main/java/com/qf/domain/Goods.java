@@ -17,6 +17,7 @@ public class Goods {
     String info;
     Integer cid;
     Integer caid;
+    Integer sid;
 
     public String getPic() {
         return pic;
@@ -72,6 +73,14 @@ public class Goods {
 
     public void setInfo(String info) {
         this.info = info;
+    }
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
     }
 
     @Override

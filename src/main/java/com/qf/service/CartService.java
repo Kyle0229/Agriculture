@@ -11,4 +11,6 @@ public interface CartService {
     int addOne(Integer gid, HttpSession session);
 
     List<Cart> selectAllByUid(Integer uid);
+
+    Integer selectCount(HttpSession session);
 }

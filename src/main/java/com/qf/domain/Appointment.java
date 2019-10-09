@@ -2,13 +2,31 @@ package com.qf.domain;
 
 import lombok.Data;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 import java.util.Date;
 
 @Data
+@Entity
 public class Appointment {
+    @Id
+            @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer aid;
+    Integer sid;
+    Integer uid;
     String uaddress;
     Date ocreatetime;
+    String info;
+
+    public Integer getSid() {
+        return sid;
+    }
+
+    public void setSid(Integer sid) {
+        this.sid = sid;
+    }
 
     public Integer getAid() {
         return aid;

@@ -12,4 +12,6 @@ public interface CartMapper {
     Cart selectOneByNameAndUid(@Param("name") String gname, @Param("uid") Integer uid);
 
     List<Cart> selectAllByUid(Integer uid);
+
+    Integer selectCount(Integer uid);
 }

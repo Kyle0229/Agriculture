@@ -27,4 +27,12 @@ public class CartController {
         Integer res =cartServiceImpl.addOne(gid,session);
         return res.toString();
     }
+    @RequestMapping("/cartCount")
+    public String cartCount(HttpSession session){
+        if(session.getAttribute("user")==null){
+            return "0";
+        }
+        Integer res =cartServiceImpl.selectCount(session);
+        return res.toString();
+    }
 }

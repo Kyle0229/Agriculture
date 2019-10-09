@@ -7,5 +7,7 @@
     <select id="selectAllByUid" resultType="com.qf.domain.Cart" parameterType="java.lang.Integer">
         select * from cart where uid = #{uid}
     </select>
-
+    <select id="selectCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+        select count(*) from cart where uid = #{uid}
+    </select>
 </mapper>
