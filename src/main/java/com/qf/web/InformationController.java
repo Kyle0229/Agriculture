@@ -1,11 +1,10 @@
 package com.qf.web;
 
 import com.qf.domain.Information;
+import com.qf.response.ResponseInformation;
 import com.qf.service.InformationService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -13,23 +12,21 @@ import java.util.List;
 public class InformationController {
     @Autowired
     private InformationService informationService;
-    @RequestMapping("/selectAllI")
-    public List<Information> selectAll(){
-        return informationService.selectAll();
+    @RequestMapping("/selectAllI/{page}/{size}")
+    public ResponseInformation selectAll(@PathVariable Integer page,@PathVariable Integer size){
+        return informationService.selectAllI(page,size);
     }
     @RequestMapping("/saveI")
     public void save(@RequestBody Information information){
         informationService.save(information);
     }
-    @RequestMapping("/deleteI")
-    public String deleteI(@RequestBody Information information){
-        Integer iid=information.getIid();
+    @RequestMapping("/deleteI/{iid}")
+    public String deleteI(@PathVariable Integer iid){
         informationService.delete(iid);
         return "删除成功";
     }
     @RequestMapping("/selectOneI")
-    public Information selectOne(@RequestBody Information information){
-        Integer iid=information.getIid();
+    public Information selectOne(@RequestParam("iid") Integer iid){
         return informationService.selectOne(iid);
     }
     @RequestMapping("/updateI")

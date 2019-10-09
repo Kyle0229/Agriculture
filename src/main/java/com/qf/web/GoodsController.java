@@ -1,23 +1,48 @@
 package com.qf.web;
 
+import com.alibaba.fastjson.JSON;
 import com.qf.domain.Goods;
+import com.qf.response.ResponseGoods;
 import com.qf.service.GoodsService;
+import com.qf.utils.UploadUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 public class GoodsController {
     @Autowired
     private GoodsService goodsService;
-    @RequestMapping("/selectAll")
-    public List<Goods> selectAll(){
-        return goodsService.selectAll();
+    @Resource
+    private UploadUtils uploadUtils;
+
+    private Logger logger = LoggerFactory.getLogger(GoodsController.class);
+
+    @RequestMapping("/upload")
+    public String test(@RequestBody MultipartFile file){
+
+        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
+        if (Objects.isNull(file) || file.isEmpty()) {
+            logger.error("文件为空");
+            return "文件为空，请重新上传";
+        }else {
+            String path = uploadUtils.upload(file);
+            return path;
+        }
+    }
+
+    @RequestMapping("/selectAll/{page}/{size}")
+    public ResponseGoods selectAll(@PathVariable Integer page,@PathVariable Integer size){
+   /*     ResponseGoods responseGoods=goodsService.selectAll(page,size);
+        List list = responseGoods.getList();
+        System.out.println(list);*/
+        return goodsService.selectAll(page,size);
     }
     @RequestMapping("/selectAllByCid")
     public List<Goods> selectAllByCid(@RequestParam("id")Integer cid){
@@ -25,23 +50,21 @@ public class GoodsController {
         return goodsService.selectAllByCid(cid);
     }
     @RequestMapping("/save")
-    public void save(@RequestParam("file")MultipartFile file, @RequestBody Goods goods){
-        goodsService.save(file,goods);
+    public void save(@RequestBody Goods goods){
+        goodsService.save(goods);
     }
-    @RequestMapping("/delete")
-    public String delete(@RequestBody Goods goods) {
-        Integer gid = goods.getGid();
+    @RequestMapping("/delete/{gid}")
+    public String delete(@PathVariable Integer gid) {
         goodsService.delete(gid);
         return "删除成功";
     }
     @RequestMapping("/selectOne")
-    public Goods selectOne (@RequestBody Goods goods){
-        Integer gid=goods.getGid();
+    public Goods selectOne (@RequestParam("gid") Integer gid){
         return goodsService.selectOne(gid);
     }
     @RequestMapping("/update")
-    public String update(@RequestParam("file")MultipartFile file,@RequestBody Goods goods){
-        goodsService.save(file,goods);
+    public String update(@RequestBody Goods goods){
+        goodsService.save(goods);
         return "修改成功";
     }
 }

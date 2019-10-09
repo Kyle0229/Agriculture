@@ -12,7 +12,7 @@ public class Information {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     Integer iid;
     Integer cid;
-    Integer iname;
+    String iname;
     String inews;
 
 
@@ -32,11 +32,11 @@ public class Information {
         this.iid = iid;
     }
 
-    public Integer getIname() {
+    public String getIname() {
         return iname;
     }
 
-    public void setIname(Integer iname) {
+    public void setIname(String iname) {
         this.iname = iname;
     }
 
@@ -52,9 +52,9 @@ public class Information {
     public String toString() {
         return "Information{" +
                 "iid=" + iid +
-                ", iname=" + iname +
-                ", inews='" + inews + '\'' +
                 ", cid=" + cid +
+                ", iname='" + iname + '\'' +
+                ", inews='" + inews + '\'' +
                 '}';
     }
 }

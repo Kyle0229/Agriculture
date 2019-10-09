@@ -3,11 +3,13 @@ package com.qf.service.impl;
 import com.qf.dao.GoodsRespository;
 import com.qf.domain.Goods;
 import com.qf.mapper.GoodsMapper;
+import com.qf.response.ResponseGoods;
 import com.qf.service.GoodsService;
-import com.qf.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
 import java.util.List;
@@ -19,20 +21,18 @@ public class GoodsServiceImpl implements GoodsService {
     private GoodsRespository goodsRespository;
     @Resource
     private GoodsMapper goodsMapper;
-    @Autowired
-    private UploadUtils uploadUtils;
     @Override
-    public List<Goods> selectAll() {
-        return goodsRespository.findAll();
+    public ResponseGoods selectAll(Integer page, Integer size) {
+        Pageable pages=PageRequest.of(page-1,size);
+        Page<Goods> all=goodsRespository.findAll(pages);
+        ResponseGoods res=new ResponseGoods();
+        res.setList(all.getContent());
+        res.setTotal(all.getTotalElements());
+        return res;
     }
 
     @Override
-    public void save(MultipartFile file, Goods goods) {
-        String path="";
-        if (file!=null&&file.getOriginalFilename()!=""){
-            path=uploadUtils.upload(file);
-        }
-        goods.setPic(path);
+    public void save(Goods goods) {
         goodsRespository.save(goods);
     }
 
