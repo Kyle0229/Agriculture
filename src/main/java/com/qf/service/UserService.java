@@ -8,7 +8,7 @@ import java.util.List;
 
 public interface UserService {
     ResponseUser selectAllU(Integer page, Integer size);
-    void save(User user);
+    User save(User user);
     void delete(Integer uid);
     User selectOne(Integer uid);
     User findByName(String name);

@@ -24,12 +24,13 @@ public class UserServiceImpl implements UserService {
     private UserRespository userRespository;
     @Override
     public ResponseUser selectAllU(Integer page, Integer size) {
-        Pageable pages=PageRequest.of(page-1,size);
-        Page<User> all=userRespository.findAll(pages);
-        ResponseUser res=new ResponseUser();
+        Pageable pages = PageRequest.of(page - 1, size);
+        Page<User> all = userRespository.findAll(pages);
+        ResponseUser res = new ResponseUser();
         res.setList(all.getContent());
         res.setTotal(all.getTotalElements());
         return res;
+    }
     public User save(User user) {
         String password=user.getPassword();
         String password1 =Md5Utils.encryptPassword(password,"likun");
