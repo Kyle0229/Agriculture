@@ -9,6 +9,7 @@ import java.util.List;
 public interface UserService {
     ResponseUser selectAllU(Integer page, Integer size);
     User save(User user);
+    User saveU(User user);
     void delete(Integer uid);
     User selectOne(Integer uid);
     User findByName(String name);

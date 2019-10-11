@@ -3,13 +3,29 @@ package com.qf.web;
 import com.qf.domain.User;
 import com.qf.response.ResponseUser;
 import com.qf.service.UserService;
+import com.qf.utils.UploadUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import com.alibaba.fastjson.JSON;
+import com.qf.domain.User;
+import com.qf.response.ResponseUser;
+import com.qf.service.UserService;
+import com.qf.utils.UploadUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import javax.annotation.Resource;
+import java.util.Objects;
+import javax.annotation.Resource;
 import java.util.List;
 
 @RestController
 public class UserController {
+    @Resource
+    private UploadUtils uploadUtils;
     @Autowired
     private UserService userService;
     @RequestMapping("/selectAllU/{page}/{size}")
@@ -17,7 +33,11 @@ public class UserController {
         return userService.selectAllU(page,size);
     }
     @RequestMapping("/saveU")
-    public void save(@RequestBody User user){
+    public void saveU(@RequestBody User user){
+        userService.saveU(user);
+    }
+    @RequestMapping("/saveUMd5")
+    public void saveUMd5(@RequestBody User user){
         userService.save(user);
     }
     @RequestMapping("/deleteU/{uid}")
@@ -33,5 +53,22 @@ public class UserController {
     public String update(@RequestBody User user){
         userService.save(user);
         return "修改成功";
+    }
+
+
+    private Logger logger = LoggerFactory.getLogger(GoodsController.class);
+
+    @RequestMapping("/uploadUser")
+    public String test(@RequestBody MultipartFile file){
+
+        logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
+        if (Objects.isNull(file) || file.isEmpty()) {
+            logger.error("文件为空");
+            return "文件为空，请重新上传";
+        }else {
+            String path = uploadUtils.upload(file);
+            System.out.println(path);
+            return path;
+        }
     }
 }

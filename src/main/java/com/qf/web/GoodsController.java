@@ -25,7 +25,7 @@ public class GoodsController {
     private Logger logger = LoggerFactory.getLogger(GoodsController.class);
 
     @RequestMapping("/upload")
-    public String test(@RequestBody MultipartFile file){
+    public String test(MultipartFile file){
 
         logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {
@@ -58,8 +58,8 @@ public class GoodsController {
         goodsService.delete(gid);
         return "删除成功";
     }
-    @RequestMapping("/selectOne")
-    public Goods selectOne (@RequestParam("gid") Integer gid){
+    @RequestMapping("/selectGoodsOne")
+    public Goods selectGoodsOne (@RequestParam("gid") Integer gid){
         return goodsService.selectOne(gid);
     }
     @RequestMapping("/update")

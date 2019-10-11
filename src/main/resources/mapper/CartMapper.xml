@@ -8,6 +8,6 @@
         select * from cart where uid = #{uid}
     </select>
     <select id="selectCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-        select count(*) from cart where uid = #{uid}
+        select sum(cacount) from cart where uid = #{uid}
     </select>
 </mapper>
