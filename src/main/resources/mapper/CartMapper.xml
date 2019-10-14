@@ -10,4 +10,7 @@
     <select id="selectCount" resultType="java.lang.Integer" parameterType="java.lang.Integer">
         select sum(cacount) from cart where uid = #{uid}
     </select>
+    <delete id="deleteOne" parameterType="java.util.Map">
+        delete from cart where caid = #{caid} and uid = #{uid}
+    </delete>
 </mapper>

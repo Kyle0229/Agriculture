@@ -59,7 +59,7 @@ public class UserController {
     private Logger logger = LoggerFactory.getLogger(GoodsController.class);
 
     @RequestMapping("/uploadUser")
-    public String test(@RequestBody MultipartFile file){
+    public String test(MultipartFile file){
 
         logger.debug("传入的文件参数：{}", JSON.toJSONString(file, true));
         if (Objects.isNull(file) || file.isEmpty()) {

@@ -2,6 +2,7 @@ package com.qf.service.impl;
 
 import com.qf.dao.GoodsRespository;
 import com.qf.domain.Goods;
+import com.qf.domain.Shoper;
 import com.qf.mapper.GoodsMapper;
 import com.qf.response.ResponseGoods;
 import com.qf.service.GoodsService;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -30,7 +33,15 @@ public class GoodsServiceImpl implements GoodsService {
         res.setTotal(all.getTotalElements());
         return res;
     }
-
+    @Override
+    public ResponseGoods selectAllBySid(Integer page, Integer size, HttpSession session) {
+        Shoper shoper = (Shoper) session.getAttribute("shoper");
+        List<Goods> temp = goodsMapper.selectBySid((page-1)*size,size,shoper.getSid());
+        ResponseGoods res=new ResponseGoods();
+        res.setList(temp);
+        res.setTotal(goodsMapper.selectCountBySid(shoper.getSid()));
+        return res;
+    }
     @Override
     public void save(Goods goods) {
         goodsRespository.save(goods);

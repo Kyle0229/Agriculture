@@ -10,4 +10,7 @@ public interface ShoperService {
     Shoper saveS(Shoper shoper);
     void deleteS(Integer sid);
     Shoper selectOneS(Integer sid);
+    Shoper save(Shoper shoper);
+    Shoper findByName(String name);
+    Shoper findBySname(String sname);
 }

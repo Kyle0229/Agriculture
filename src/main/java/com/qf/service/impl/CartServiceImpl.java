@@ -26,18 +26,18 @@ public class CartServiceImpl implements CartService {
     }
 
     @Override
-    public int addOne(Integer gid, HttpSession session) {
+    public int addOne(Integer gid,Integer num, HttpSession session) {
         User user =(User)session.getAttribute("user");
         Goods goods=goodsMapper.selectOneByGid(gid);
         Cart cart = cartMapper.selectOneByNameAndUid(goods.getGname(),user.getUid());
         if(cart!=null){
-            cart.setCacount(cart.getCacount()+1);
+            cart.setCacount(cart.getCacount()+num);
             cart.setCatotalprice(cart.getOaprice()*cart.getCacount());
             cartRespository.save(cart);
         }else{
             cart =new Cart();
             cart.setCaname(goods.getGname());
-            cart.setCacount(1);
+            cart.setCacount(num);
             cart.setUid(user.getUid());
             cart.setOaprice(goods.getOaprice());
             cart.setCatotalprice(goods.getOaprice());
@@ -56,5 +56,10 @@ public class CartServiceImpl implements CartService {
     public Integer selectCount(HttpSession session) {
         User user = (User) session.getAttribute("user");
         return cartMapper.selectCount(user.getUid());
+    }
+
+    @Override
+    public int deleteOne(Integer caid, Integer uid) {
+        return cartMapper.deleteOne(caid,uid);
     }
 }

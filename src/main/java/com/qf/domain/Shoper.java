@@ -17,6 +17,16 @@ public class Shoper {
     String semail;
     String stel;
     Integer aid;
+    String pic;
+
+    public String getPic() {
+        return pic;
+    }
+
+    public void setPic(String pic) {
+        this.pic = pic;
+    }
+
     public Integer getAid() {
         return aid;
     }

@@ -7,4 +7,13 @@
         <select id="selectOneByGid" resultType="com.qf.domain.Goods" parameterType="java.lang.Integer">
     select * from goods where gid = #{gid}
 </select>
+
+
+<select id="selectCountBySid" resultType="java.lang.Long" parameterType="java.lang.Integer">
+    select count(*) from goods where sid = #{sid}
+</select>
+
+    <select id="selectBySid" resultType="com.qf.domain.Goods" parameterType="java.util.Map">
+    select * from goods where sid = #{sid} limit #{page},#{size}
+</select>
 </mapper>

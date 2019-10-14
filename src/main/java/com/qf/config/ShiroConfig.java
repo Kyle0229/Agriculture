@@ -1,7 +1,12 @@
 package com.qf.config;
 
+import com.qf.shiro.AdminShiroRealm;
+import com.qf.shiro.CustomizedModularRealmAuthenticator;
 import com.qf.shiro.MyShiroRealm;
+import com.qf.shiro.ShoperShiroRealm;
 import org.apache.shiro.authc.credential.HashedCredentialsMatcher;
+import org.apache.shiro.authc.pam.AtLeastOneSuccessfulStrategy;
+import org.apache.shiro.realm.Realm;
 import org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor;
 import org.apache.shiro.spring.web.ShiroFilterFactoryBean;
 import org.apache.shiro.web.mgt.DefaultWebSecurityManager;
@@ -9,6 +14,9 @@ import org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreato
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+
+import java.util.ArrayList;
+import java.util.List;
 
 
 @Configuration
@@ -45,10 +53,15 @@ public class ShiroConfig {
      * 创建securityManager实例
      */
     @Bean("defaultWebSecurityManager")
-    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm")MyShiroRealm myShiroRealm){
+    public DefaultWebSecurityManager defaultWebSecurityManager(@Qualifier("myShiroRealm")MyShiroRealm myShiroRealm,@Qualifier("shoperShiroRealm")ShoperShiroRealm shoperShiroRealm,@Qualifier("adminShiroRealm")AdminShiroRealm adminShiroRealm,@Qualifier("customizedModularRealmAuthenticator") CustomizedModularRealmAuthenticator customizedModularRealmAuthenticator ){
         DefaultWebSecurityManager defaultWebSecurityManager = new DefaultWebSecurityManager();
-
-        defaultWebSecurityManager.setRealm(myShiroRealm);
+        defaultWebSecurityManager.setAuthenticator(customizedModularRealmAuthenticator);
+//        defaultWebSecurityManager.setRealm(myShiroRealm);
+        List<Realm> list =new ArrayList<>();
+        list.add(myShiroRealm);
+        list.add(shoperShiroRealm);
+        list.add(adminShiroRealm);
+        defaultWebSecurityManager.setRealms(list);
 
         return defaultWebSecurityManager;
     }
@@ -79,7 +92,20 @@ public class ShiroConfig {
         myShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
         return myShiroRealm;
     }
-
+    @Bean("shoperShiroRealm")
+    public ShoperShiroRealm loginRealm1(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
+        ShoperShiroRealm shoperShiroRealm = new ShoperShiroRealm();
+        shoperShiroRealm.setAuthorizationCachingEnabled(false);
+        shoperShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        return shoperShiroRealm;
+    }
+    @Bean("adminShiroRealm")
+    public AdminShiroRealm loginRealm2(@Qualifier("hashedCredentialsMatcher")HashedCredentialsMatcher hashedCredentialsMatcher){
+       AdminShiroRealm adminShiroRealm = new AdminShiroRealm();
+        adminShiroRealm.setAuthorizationCachingEnabled(false);
+       adminShiroRealm.setCredentialsMatcher(hashedCredentialsMatcher);
+        return adminShiroRealm;
+    }
     /**
      * 开启Shiro注解(如@RequiresRoles,@RequiresPermissions),
      * 需借助SpringAOP扫描使用Shiro注解的类,并在必要时进行安全逻辑验证
@@ -100,5 +126,15 @@ public class ShiroConfig {
         authorizationAttributeSourceAdvisor.setSecurityManager(defaultWebSecurityManager);
         return authorizationAttributeSourceAdvisor;
     }
-
+    /**
+     * 配置使用自定义认证器，可以实现多Realm认证，并且可以指定特定Realm处理特定类型的验证
+     * 配置认证策略，只要有一个Realm认证成功即可，并且返回所有认证成功信息
+     */
+  @Bean
+    public CustomizedModularRealmAuthenticator customizedModularRealmAuthenticator(){
+       CustomizedModularRealmAuthenticator customizedModularRealmAuthenticator = new CustomizedModularRealmAuthenticator();
+      AtLeastOneSuccessfulStrategy atLeastOneSuccessfulStrategy = new AtLeastOneSuccessfulStrategy();
+       customizedModularRealmAuthenticator.setAuthenticationStrategy(atLeastOneSuccessfulStrategy);
+       return customizedModularRealmAuthenticator;
+  }
 }

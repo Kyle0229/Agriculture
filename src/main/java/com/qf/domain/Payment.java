@@ -4,6 +4,22 @@ import lombok.Data;
 
 @Data
 public class Payment {
-    String out_trade_no;
-    String total_amount;
+    String orderId;
+    String orderAmount;
+
+    public String getOrderId() {
+        return orderId;
+    }
+
+    public void setOrderId(String orderId) {
+        this.orderId = orderId;
+    }
+
+    public String getOrderAmount() {
+        return orderAmount;
+    }
+
+    public void setOrderAmount(String orderAmount) {
+        this.orderAmount = orderAmount;
+    }
 }

@@ -14,4 +14,6 @@ public interface CartMapper {
     List<Cart> selectAllByUid(Integer uid);
 
     Integer selectCount(Integer uid);
+
+    int deleteOne(@Param("caid") Integer caid, @Param("uid") Integer uid);
 }

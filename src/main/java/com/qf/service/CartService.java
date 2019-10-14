@@ -8,9 +8,11 @@ import java.util.List;
 public interface CartService {
     List<Cart> selectAll();
 
-    int addOne(Integer gid, HttpSession session);
+    int addOne(Integer gid ,Integer num, HttpSession session);
 
     List<Cart> selectAllByUid(Integer uid);
 
     Integer selectCount(HttpSession session);
+
+    int deleteOne(Integer caid, Integer uid);
 }

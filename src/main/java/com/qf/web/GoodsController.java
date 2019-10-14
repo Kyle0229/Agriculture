@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 import java.util.Objects;
 
@@ -43,6 +44,13 @@ public class GoodsController {
         List list = responseGoods.getList();
         System.out.println(list);*/
         return goodsService.selectAll(page,size);
+    }
+    @RequestMapping("/selectAllBySid/{page}/{size}")
+    public ResponseGoods selectAllBySid(@PathVariable Integer page, @PathVariable Integer size, HttpSession session){
+   /*     ResponseGoods responseGoods=goodsService.selectAll(page,size);
+        List list = responseGoods.getList();
+        System.out.println(list);*/
+        return goodsService.selectAllBySid(page,size,session);
     }
     @RequestMapping("/selectAllByCid")
     public List<Goods> selectAllByCid(@RequestParam("id")Integer cid){

@@ -1,58 +1,20 @@
 package com.qf.config;
 
-import java.io.FileWriter;
-import java.io.IOException;
-
 public class AlipayConfig {
-    // 应用ID,您的APPID，收款账号既是您的APPID对应支付宝账号
-    public static String app_id = "2016101200671958";
 
-    // 商户私钥，您的PKCS8格式RSA2私钥
-    public static String merchant_private_key = "MIIEvQIBADANBgkqhkiG9w0BAQEFAASCBKcwggSjAgEAAoIBAQCOG7dJvnN7NsHW63G7pxQXhZJFKouI0Ao8OWkHEMZpg0A2OWVHP6HPsH7oSEBnabwb7DNtUFKBVy6+3g3WhblZLAXdjJSMchbScAFVHJD9Tnz9t2AlXqHxzw05nfT6QFF/FYII4uhqASEzA6AX9kvcT+b91+CyY8bRvS7Fh/eB+NGiECEB/8Mi2yxnmphbRvQpJCh5rPYe6lAk8WNMvWRMsbjStTGcrU9xvFqB0bgN97yiRnNSgIZpbyD4iIB26FIJOWEJLRLrrEXbOHhgBHx8JMufrymH8BQHJMBDEqkO0Vstz207r6hDxzbSLUifexaV0S0ACYvKS5UqHZu2Q9U7AgMBAAECggEADSLOvIhYUGltXZqB9uCo4Mu+C5q1Lz5b09lStg586L/zLY/8pqthH7um333eRjDl7IbW8iHcnowajBYmnU/bJD0HhcU67giVx3oHBYEQffnFYAaVYp7uxVVoWY0aWg+b+O1aCcw/w5y7HuYU5GIl/QV9yrUr1hGXDUg5jJTW8jKUZAaSU2VBDTidkWKTP2YzjsjCXtBBNu70He75YTp6pXKu1m58ILZ0PmpaZyT2a9TMzTmQlOgoQjIgYPqRI/0vURs0PNp9+eiXpmgIhTCOK5bVMetrjwU1TcTL0dCxVKPRhmpOPs9D7d7tahESJxilUywH79pMOt6mWPbLNRDdYQKBgQDU/oqVQ00c+9B8a9Udzu2ixAmJ7YHupWBudaFHjkXBAH0n6opJRq/lqy3lIfwdPbXuWCsr44LnpO11c9FqKS/PV7eKf7duUbqTG3fK9ekk34hf2i0C9VRp9DuKSlrOKXLecJjz4nCOTGhXdbBrQmbTGvAd0RkWtruxPneC4pXAOQKBgQCqzSXGJagQysOTarw9XAdhlJa5nF5p+HmcLMYJpiHxkBmtgsbRCxV1vXzt1NTybGRDAWgydB1vAD5JQ4NbqwNWObm7JravfK1tfOnh2PJg/KnpE9Q8825vNY72+yXDLNJEhp9UtLa+z0YODosN3nCfRb7eKzXtH/LkXAHf3mkZEwKBgHfZhwd4aFLPyz/HuZLdVlBJOQjYkU1E118wZ4EJKGzypnooeonC8cUtLlUJa4DUsaOdDyXSDl3kKw31DrhK1rE4LXoMZZ349SBDy4N0Hi12bplo/fz1KPu5xysIrdHl9tH9z8Mj/qvDiM711UB1i8BsHwLYHuLuDe0tNjh64ULZAoGBAILolUkXV4b3QYrdRcVpoaaishs0xBBIhzyx/F8s29s/bM7V6vgRnLMPNo86jrP3a6kHjQsOf/ixoQuaGTXLDtWpjLbqZx59WpcOJFwbYToArWGc9xB4K25FCHw35at/0PEAlWHg2CfKyZDAiMdqc7s/Q5kYWU6TLCDme/FPkBHNAoGAajnGXvgwsLLcqRBGrKjrIp4djt8wElbe+3u0UBlc1yoaceasON/DYoJ4dko6XroTGMx2u2+FfESR//+KeJjsiaMZJJR1blw+efqR74HhOjY2BNiKnhXfkzEhtrnspnEN8gSLVV5kpCgbYyeqticJ9uRSHZH2UhkCm6W3/dLyx8U=";
+	public static String app_id = "2016101300680100";//�ں�̨��ȡ���������ã�
+	
+	public static String merchant_private_key = "MIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDAxL2shLmQFOCIVhR/ofK89roPE6Kp1C4FQ8u+z/RcI/zJFPt68GBNWE9lbTFxGK4kjmCT6g6s/4VZqvQc8kIE3D16hGAKTNc/Z3W9o3YFq8OqEL/xod+vwZ+4XHdOmbG5wBy4tv3ITEjwFp9XwLMPZL8Oh6b4fU04O2BQ6UKkTy71QLKr0xJH52wAAkzGy1LBZ2Kbrv3UxsgZazoVX2EhbexsRuXfLkMLxdGGErHI7cX3bX4brGF61FlqOlWpwGm9brdUrJ/sUH+p4sT3vWZuSyR1FD1lvkOPTdt+GaoPuCJUkvs/6BtcCWVN0wCNGg2psNystJk3UCrMr+4ZZ43dAgMBAAECggEAB2CAEbYSk9z4qr8AkdHUxD586E7MDsu75x+tEGRM6anG5rsS1KWWSd9zSmJfXgCfyW5Za8+tOBmfNMtCBEmRFTaIc8PVGQ/PvPFspBE5VwY3uq5hahHTyZoTTq7bMfrXvlAHyVnXZG7m66kx9927/H7SgO/YB/Jjnh9HlFEY58i+5vibiNoKUD2GfBSvCOJrKXe9GrbysUmLHjeDZbDcMDhjGO97rBhFlQlRcKTDBqJEOjfAj/p0Q1bxfE6rkFvrCNDx6QKZhj5FtiddBCvBczqUKRMbeubKoPlgAA7tTw7YP9kxXH2CqltSsldPjQwcDv/Gs1vK7OivmqtPGxD+0QKBgQDxzbLwSE8x31/krdrkkhV7HisWSdqWTv8Mnws/oCv5KAxkJRf/YJlIrxPv0doBCva/cJ06PuZp4cI14fpTcMhHV649lK9jbr5TGLVQQq48k+0PtqjAwVXgPEZZR9Q4KJLSntVXKW3jR5k+OX+DYM6R+CG3OISXlmt9SKbZjffP0wKBgQDMFgwTFPZIstrzWtAfXp2/j1dkKJYzPKvtUHXch4w46P2R8S2dC3LrHyegLUKF7tQHSzRr5xS+QPXh35vjSpQqFIDpbDyr3lt3pkySJuTxnLZVsqdzC+HnOh9/na3UGVmkxLNPZjW2QY5CQ+Q9cVTC099oGBEmtioJChEQoKhNjwKBgDu91rgHJYns5oRZb/uJHEWO7pZTKO56FgnIQb82k6a7flQ/1e4Cr9yFZSebcYFQdCZYbIA3ijYe0Rz++Bolg1YdE6+jTLIEaoGdWS67StEsuyVmu8rj+ZOtULQ+SvCVFbF0DMG8Oqosxm/ZROfwwxjNdYcPL7NENsp9aLvXl6KBAoGAXblOSEEbLZ29wX6WD6HzDfL1LlEZUWRujGikB+fT9JrDQI+i4/lLCEFhgEToxPs+Mi9OXrNbqlfI07dOLt6kFoMeBJSpdECEfvlHNuNXxsGyVr7Z+ZKeZwMhTgkKuFn/+hQ/SJpm1lFa1IG7QqBWTbbhZTuQPNfxi/8sgRdW028CgYAhsZazKG19cahk2YGpFPLWq/XJtrMViE0M0BTNA1AScgJgLXoblscahn1OCWuKhGZl7Q4Akcd1zTIvqH2DcP4IIcWSYCBOe6JRFW2G6OQnLCrZroSQi3X9n1+9wFrxwjzFuz8j6oKB9VXOJwbkzzaNiCgOxQEpRfS58AH3smD6Uw==";//�̳̲鿴��ȡ��ʽ���������ã�
 
-    // 支付宝公钥,查看地址：https://openhome.alipay.com/platform/keyManage.htm 对应APPID下的支付宝公钥。
-    public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAjfwFM0yHdV6+FXj4JKpNq8fzZ7LTlBGDvb607h+FEm8fa6kmDoGHib0CHZ/g8hG9rNEEoc5lgFCvA8mXbWQz880ARjaRKrlba5wv5gOG5DTw92bVqAmd9h6riNSwiOrC+MPQEa368tyDJHP56dpQ2V3Vi105AB8WokhHqolDexFBMpQq946A8HDlLtVuQJcZ4AYMQs9rpP0LDl2hRix09GMDTTMCFgMPYDFzk1qHJf9B5c14KiKPRwJ8Zq3npLG1cxZVBSI8VSx80GVLDiHa11/PPcjnDfCeEn7nsmi8RJlT39qNB2J/QdQWzZ3A9XucMttrA+8Nt3ih+YgKZL5ylwIDAQAB";
-
-    // 服务器异步通知页面路径  需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String notify_url = "http://localhost:8080/pay/notify_url.jsp";
-
-    // 页面跳转同步通知页面路径 需http://格式的完整路径，不能加?id=123这类自定义参数，必须外网可以正常访问
-    public static String return_url = "http://localhost:8080/#/";
-
-    // 签名方式
-    public static String sign_type = "RSA2";
-
-    // 字符编码格式
-    public static String charset = "utf-8";
-
-    // 支付宝网关
-    public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";
-
-    // 支付宝网关
-    public static String log_path = "C:\\";
-
-
-//↑↑↑↑↑↑↑↑↑↑请在这里配置您的基本信息↑↑↑↑↑↑↑↑↑↑↑↑↑↑↑
-
-    /**
-     * 写日志，方便测试（看网站需求，也可以改成把记录存入数据库）
-     * @param sWord 要写入日志里的文本内容
-     */
-    public static void logResult(String sWord) {
-        FileWriter writer = null;
-        try {
-            writer = new FileWriter(log_path + "alipay_log_" + System.currentTimeMillis()+".txt");
-            writer.write(sWord);
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            if (writer != null) {
-                try {
-                    writer.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+	public static String alipay_public_key = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAzq4VmbZk23zNIeKoYj+z5OpeQT9ZnpGVQDN0AYM7/RydHbWOSQcH+C4zdtBNJT4SIRV0XrHsHV+xQnaiBntsryeVcmFeQUFDgHVtHRp4Ocx1PjOJZ3nRk4iBnTSp7iGAmN2qnoQvC5WUOBoixWOOMVDH6DqN/WVloTZLjBkZ3Qesqy1wQ2YR4vO8jJsGNwixKnsq8kTkK2AsZwOCtibRGO+0R8PMH/HOq0V2L07ovS7K7T92KagHsxdeJg3qiDIekXo4V0Gzf5a7MHAGsdshQ2I4cc2rUWuoTPAneuHLtOwIUflZY7F+J3cnHKptdCxFSTBCzEiomADc2TQNfFtgTwIDAQAB";//�̳̲鿴��ȡ��ʽ���������ã�
+	
+	public static String notify_url = "http://localhost:8080/#/payment";
+	
+	public static String return_url = "http://localhost:8080/#/payment";
+	
+	public static String sign_type = "RSA2";
+	
+	public static String charset = "utf-8";
+	
+	public static String gatewayUrl = "https://openapi.alipaydev.com/gateway.do";//ע�⣺ɳ����Ի�������ʽ����Ϊ��https://openapi.alipay.com/gateway.do
 }
